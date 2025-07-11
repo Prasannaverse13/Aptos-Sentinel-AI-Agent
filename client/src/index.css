@@ -1,0 +1,154 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 240 10% 3.9%; /* #0F172A */
+  --foreground: 0 0% 98%; /* #FAFAFA */
+  --muted: 240 3.7% 15.9%; /* #1E293B */
+  --muted-foreground: 240 5% 64.9%; /* #64748B */
+  --popover: 240 10% 3.9%; /* #0F172A */
+  --popover-foreground: 0 0% 98%; /* #FAFAFA */
+  --card: 240 3.7% 15.9%; /* #1E293B */
+  --card-foreground: 0 0% 98%; /* #FAFAFA */
+  --border: 240 3.7% 15.9%; /* #334155 */
+  --input: 240 3.7% 15.9%; /* #334155 */
+  --primary: 207 90% 54%; /* #0EA5E9 */
+  --primary-foreground: 211 100% 99%; /* #F0F9FF */
+  --secondary: 240 3.7% 15.9%; /* #1E293B */
+  --secondary-foreground: 0 0% 98%; /* #FAFAFA */
+  --accent: 142 76% 36%; /* #10B981 */
+  --accent-foreground: 0 0% 98%; /* #FAFAFA */
+  --destructive: 0 84.2% 60.2%; /* #EF4444 */
+  --destructive-foreground: 0 0% 98%; /* #FAFAFA */
+  --warning: 38 92% 50%; /* #F59E0B */
+  --warning-foreground: 0 0% 98%; /* #FAFAFA */
+  --ring: 207 90% 54%; /* #0EA5E9 */
+  --radius: 0.5rem;
+  --chart-1: 207 90% 54%; /* #0EA5E9 */
+  --chart-2: 142 76% 36%; /* #10B981 */
+  --chart-3: 38 92% 50%; /* #F59E0B */
+  --chart-4: 0 84.2% 60.2%; /* #EF4444 */
+  --chart-5: 262 83% 58%; /* #8B5CF6 */
+}
+
+.light {
+  --background: 0 0% 100%; /* #FFFFFF */
+  --foreground: 240 10% 3.9%; /* #0F172A */
+  --muted: 210 40% 98%; /* #F8FAFC */
+  --muted-foreground: 215 16% 47%; /* #64748B */
+  --popover: 0 0% 100%; /* #FFFFFF */
+  --popover-foreground: 240 10% 3.9%; /* #0F172A */
+  --card: 0 0% 100%; /* #FFFFFF */
+  --card-foreground: 240 10% 3.9%; /* #0F172A */
+  --border: 220 13% 91%; /* #E2E8F0 */
+  --input: 220 13% 91%; /* #E2E8F0 */
+  --primary: 207 90% 54%; /* #0EA5E9 */
+  --primary-foreground: 211 100% 99%; /* #F0F9FF */
+  --secondary: 210 40% 98%; /* #F8FAFC */
+  --secondary-foreground: 222.2 84% 4.9%; /* #0F172A */
+  --accent: 142 76% 36%; /* #10B981 */
+  --accent-foreground: 0 0% 98%; /* #FAFAFA */
+  --destructive: 0 84.2% 60.2%; /* #EF4444 */
+  --destructive-foreground: 0 0% 98%; /* #FAFAFA */
+  --warning: 38 92% 50%; /* #F59E0B */
+  --warning-foreground: 0 0% 98%; /* #FAFAFA */
+  --ring: 207 90% 54%; /* #0EA5E9 */
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-foreground font-semibold;
+  }
+}
+
+@layer utilities {
+  .animate-pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  .gradient-primary {
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
+  }
+  
+  .border-gradient {
+    background: linear-gradient(90deg, transparent, hsl(var(--primary)), transparent) bottom;
+    background-size: 100% 1px;
+    background-repeat: no-repeat;
+  }
+
+  .text-glow {
+    text-shadow: 0 0 10px hsl(var(--primary) / 0.5);
+  }
+
+  .box-glow {
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.1);
+  }
+
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--muted)) transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted));
+    border-radius: 3px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground));
+  }
+}
+
+/* Custom animations */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-in {
+  animation: slideIn 0.3s ease-out;
+}
+
+/* Network status indicators */
+.network-active {
+  @apply bg-accent;
+  animation: pulse 2s infinite;
+}
+
+.network-warning {
+  @apply bg-orange-500;
+  animation: pulse 1.5s infinite;
+}
+
+.network-error {
+  @apply bg-destructive;
+  animation: pulse 1s infinite;
+}
+
+.network-paused {
+  @apply bg-muted-foreground;
+}
